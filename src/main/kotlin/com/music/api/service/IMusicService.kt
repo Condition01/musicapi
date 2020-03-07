@@ -4,7 +4,6 @@ import com.music.api.model.Music
 import org.springframework.data.domain.Example
 import org.springframework.data.domain.Sort
 import java.util.*
-
 interface IMusicService {
     fun <S : Music?> save(entity: S): S
     fun findAll(): MutableList<Music>

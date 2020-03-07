@@ -1,5 +1,9 @@
 package com.music.api.model
 
+import com.fasterxml.jackson.annotation.JsonAnyGetter
+import com.fasterxml.jackson.annotation.JsonBackReference
+import com.fasterxml.jackson.annotation.JsonIgnore
+import com.fasterxml.jackson.annotation.JsonProperty
 import javax.persistence.*
 
 @Entity
@@ -7,13 +11,15 @@ import javax.persistence.*
 data class Music(
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
-        @Column(name = "mus_id", nullable = false)
         val id: Long,
-        @Column(name = "mus_name", nullable = false)
-        val name: String,
         @Column(name = "mus_number", nullable = false)
         val number: Int,
+        @Column(name = "mus_name", nullable = false)
+        val name: String,
+        @JsonBackReference //bidirectional dependencies need this annotation in the ManyToOneSide
         @ManyToOne
         @JoinColumn(name = "alb_id", nullable = false)
-//        @Column(name = "mus_album_id", nullable = false)
-        val album: Album)
+        var album: Album?,
+        @JsonProperty(value = "album_name")
+        var albumName : String?
+        )
