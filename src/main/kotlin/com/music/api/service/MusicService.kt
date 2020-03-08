@@ -1,6 +1,7 @@
 package com.music.api.service
 
 import com.music.api.model.Music
+import com.music.api.repository.MusicRepository
 import org.springframework.data.domain.Example
 import org.springframework.data.domain.Sort
 import org.springframework.stereotype.Service

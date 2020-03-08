@@ -1,4 +1,4 @@
-package com.music.api.service
+package com.music.api.repository
 
 import com.music.api.model.Music
 import org.springframework.data.jpa.repository.JpaRepository

@@ -18,3 +18,15 @@ spring:
         show_sql: true
         use_sql_comments: true
         format_sql: true
+
+seedUser1:
+  login: condzera
+  password: 14243183
+  fullName: Bruno Ferreira Cardoso
+  role: ADMIN
+
+seedUser2:
+  login: cond
+  password: 14243183
+  fullName: Bruno Ferreira Cardoso
+  role: USER

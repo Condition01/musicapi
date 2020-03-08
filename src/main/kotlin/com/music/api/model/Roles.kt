@@ -1,6 +1,6 @@
 package com.music.api.model
 
-enum class Roles {
+enum class Roles (){
     ADMIN{
         override fun getRole(): String = "admin"
     },

@@ -1,11 +1,11 @@
 package com.music.api.service
 
 import com.music.api.model.Album
+import com.music.api.repository.AlbumRepository
 import org.springframework.data.domain.Example
 import org.springframework.data.domain.Sort
 import org.springframework.stereotype.Service
 import java.util.*
-import javax.swing.text.html.parser.Entity
 
 @Service
 class AlbumService(private val albumRepository: AlbumRepository) : IAlbumService {

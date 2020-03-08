@@ -10,20 +10,19 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity
 import org.springframework.security.config.annotation.web.builders.WebSecurity
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.security.crypto.password.NoOpPasswordEncoder
 import org.springframework.security.crypto.password.PasswordEncoder
 
 //form base authentication
 @Configuration
 @EnableWebSecurity
-class SecurityConfig : WebSecurityConfigurerAdapter() {
+class SecurityConfig(private val myUserDetailsService : MyUserDetailsService) : WebSecurityConfigurerAdapter() {
 
-    //configurações de autenticação
+    //authentication configs
     override fun configure(auth: AuthenticationManagerBuilder?) {
-        auth?.inMemoryAuthentication()
-                ?.withUser("condzera")?.password("14243183")?.roles(Roles.ADMIN.getRole())
-                ?.and()
-                ?.withUser("cond")?.password("14243183")?.roles(Roles.USER.getRole())
+        auth?.userDetailsService(myUserDetailsService)
+                ?.passwordEncoder(passwordEncoder())
     }
 
 
@@ -37,11 +36,10 @@ class SecurityConfig : WebSecurityConfigurerAdapter() {
                 .hasAnyRole(Roles.USER.getRole(), Roles.ADMIN.getRole())
                 .anyRequest().authenticated()
                 .and().httpBasic() //basic http --> receive the authentication in header
-
     }
 
     @Bean
     fun passwordEncoder() : PasswordEncoder{
-        return NoOpPasswordEncoder.getInstance()
+        return BCryptPasswordEncoder()
     }
 }
