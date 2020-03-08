@@ -30,7 +30,7 @@ class AlbumController(private val albumService: IAlbumService) {
         }
     }
 
-    @PostMapping(value = ["/saveAllMusics"])
+    @PostMapping(value = ["/saveAllAlbums"])
     fun saveAllMusics(@RequestBody albums : MutableIterable<Album>): ResponseEntity<*> {
         return try {
 //            ResponseEntity.ok(mutableListOf(albums.map { albumService.save(it) }))
